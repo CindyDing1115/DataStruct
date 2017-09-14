@@ -1,0 +1,39 @@
+
+import java.util.Arrays;
+
+/**
+ * TIME COMPLEXITY : O(n^2)
+ */
+public class SelectionSort {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = new int[]{1,5,56,456,44,5,4,2,8,54};
+		SelectionSort ss = new SelectionSort();
+		ss.Selection(arr);
+	}
+	
+	public void Selection(int[] arr){
+		int i,j,min;
+		int len = arr.length;
+		for(i=0;i<len-1;i++){
+			
+			min = i;
+			
+			for(j=i+1;j<len;j++){
+			
+				if(arr[min]>arr[j]){//小于当前最小值！！！不能拿 i 进行比较 ！
+					min = j;
+				}
+			}
+			if(i != min){
+				BasicHelper.Swap_My(arr, i, min);
+			}
+		}
+		System.out.println(Arrays.toString(arr));
+		
+	}
+	
+
+}
