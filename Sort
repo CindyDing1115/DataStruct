@@ -1,0 +1,80 @@
+
+import java.util.Arrays;
+
+import org.junit.Test;
+
+import sun.applet.Main;
+
+/**
+ * TIME COMPLEXITY : O(n^2)
+ * @author Administrator
+ *
+ */
+public class BubbleSort {
+
+	public static void main(String[] args) {
+		int[] arr = new int[]{1,5,56,456,44,5,4,2,8,54};
+		BubbleSort bs = new BubbleSort();
+//		bs.func_worst(arr);
+//		bs.Bubble(arr);
+		bs.Bubble_Optimization(arr);
+		
+	}
+	/**
+	 * 在原有的Bubble(int[] arr)上加一个判断，避免不必要的交换
+	 * @param arr
+	 */
+	public void Bubble_Optimization(int[] arr){
+		int i,j;		
+		int len = arr.length-1;
+		
+		boolean flag = true;	//做标记
+		
+		for(i=0;i<=len && flag;i++){
+			flag = false;	//初始为 false
+			
+			for(j=len-1;j>=i;j--){
+				if(arr[j]>arr[j+1]){ //注意这里的区别！！！
+					BasicHelper.Swap_My(arr, j, j+1);//注意这里的区别！！！
+					flag = true; //有数据交换，则flag为true
+				}
+			}
+		}
+		System.out.println(Arrays.toString(arr));
+	}
+	
+	/**
+	 * 在一次for(j...)的循环中，实现了让最末尾的元素排到比他大的数之前，并且选出了最小值放在第一位！
+	 * @param arr
+	 */
+	public void Bubble(int[] arr){
+		int i,j;
+		int len = arr.length-1;
+		for(i=0;i<=len;i++){
+			for(j=len-1;j>=i;j--){
+				if(arr[j]>arr[j+1]){ //注意这里的区别！！！
+					BasicHelper.Swap_My(arr, j, j+1);//注意这里的区别！！！
+				}
+			}
+		}
+		System.out.println(Arrays.toString(arr));
+	}
+	
+	/**
+	 * 不满足两两比较，相邻记录。这只是让每一个关键字都和它后面的每一个比较，之后交换。
+	 * @param arr
+	 */
+	public void func_worst(int[] arr){
+		int i,j;
+		int len = arr.length-1;
+		for(i=0;i<len;i++){
+			for(j=i+1;j<=len;j++){
+				if(arr[i]>arr[j]){
+					BasicHelper.Swap_My(arr, i, j);
+				}
+			}			
+		}
+		System.out.println(Arrays.toString(arr));;
+	}
+	
+}
