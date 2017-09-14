@@ -1,0 +1,39 @@
+
+import java.util.Arrays;
+
+/**
+ * TIME COMPLEXITY : 
+ * 			Best  : O(n)
+ * 			Worst : O(n^2)
+ */
+public class StraightInsertSort extends Basic {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = new int[]{1,5,56,456,44,5,4,2,8,54};
+		StraightInsertSort sis = new StraightInsertSort();
+		sis.InsertSort(arr);
+		
+	}
+	
+	public void InsertSort(int[] arr){
+		int i,j;
+		int len = arr.length;
+		for(i=1;i<len;i++){
+			if(arr[i]<arr[i-1]){
+				
+				int temp = arr[i];	//temp 作为哨兵，记录 i 的大小，以便在 j 后移之后保留原来的值赋给对应的位置！
+				for(j=i-1;arr[j]>temp;j--){
+					arr[j+1] = arr[j];					
+				}
+				arr[++j] = temp; // here !
+			}			
+		}
+		System.out.println(Arrays.toString(arr));
+		
+	}
+
+}
