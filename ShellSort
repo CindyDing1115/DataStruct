@@ -1,0 +1,41 @@
+
+import java.util.Arrays;
+
+public class ShellSort {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] arr = new int[]{1,3,5,56,456,44,5,2,4,2,8,54};
+		ShellSort ss = new ShellSort();
+		ss.Shell(arr);
+		
+	}
+	/**
+	 * 相隔某个增量 组成一个子序列，实现跳跃式的移动 ！
+	 * @param arr
+	 */
+	public void Shell(int[] arr){		
+		int i,j;
+		int len = arr.length;
+		int increment = len;
+		do{
+			increment = increment/3 + 1; //** 增量每次按倍数减少 ！！！
+			for(i=increment;i<len;i++){
+				if(arr[i]<arr[i-increment]){
+					int temp = arr[i];
+					for(j=i-increment;j>=0 && arr[j]>temp;j-=increment){	//注意条件！！
+						arr[j+increment] = arr[j];
+					}
+					arr[j+increment] = temp;	//要加上for里最后减掉的 increment ！
+				}
+			}
+			
+		}while(increment > 1);	//使间隔增量逐步降低，至相邻
+		
+		System.out.println(Arrays.toString(arr));
+	}
+	
+
+}
