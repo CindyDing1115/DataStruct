@@ -1,0 +1,47 @@
+import java.util.Arrays;
+
+public class QuickSort {
+	
+	public void Swap(int[]arr,int a,int b){
+		int t = arr[a];
+		arr[a] = arr[b];
+		arr[b] = t;
+	}
+	//递归
+	public void QSort(int[] arr,int low,int high){
+		int m;
+		if(low<high){
+			m = Partition(arr, low, high);
+			QSort(arr,low,m-1);
+			QSort(arr,m+1,high);
+			
+		}
+		
+	}
+	
+	public int Partition(int[] arr,int low,int high){
+		int temp = arr[low];
+		while(low<high){
+			while(low<high && temp<=arr[high]){
+				high--;
+			}
+			Swap(arr,low,high);
+			while(low<high && temp>=arr[low]){
+				low++;
+			}
+			Swap(arr,low,high);
+		}
+		
+		return low;
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = {1,5,3,20,76,44,2,1,56,643,3,1,6};
+		QuickSort qs = new QuickSort();
+		qs.QSort(arr,1,arr.length-1);
+		System.out.println(Arrays.toString(arr));
+	}
+
+}
