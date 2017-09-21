@@ -1,0 +1,61 @@
+
+import java.util.Arrays;
+
+public class KMPTest {
+	public static void main(String[] args) {
+		String str_o = "dhuisaababaaabahuaihfuieauheuaihababaaabahuia";
+		String str = "ababaaaba";
+		char[] c = str.toCharArray();
+		char[] S = str_o.toCharArray();
+//		System.out.println(c);
+//		int[] next = new int[str.length()+1];
+		KMPTest kmp = new KMPTest();
+//		kmp.get_next(c,next);
+		
+		int result = kmp.Index_KMP(S, c, 1);
+		System.out.println(result);
+	}
+
+	void get_next(char[] T, int[] next){
+		int i=1,j=0;
+		next[1]= 0;
+		while(i < T.length){
+			if(j==0 || T[i]==T[j]){//T[i]表示后缀单个字符  T[j]表示前缀单个字符  
+				i++;j++;
+				/**
+				 * 这里 j 表示当前匹配到的字符数【前缀】。当 T[i]==T[j]
+				 * 表示当前有 j 个长度是字符是匹配的。
+				 * 故，j++ 后，即为 j 个相等， k 值为 j+1
+				 */
+				next[i] = j;
+			}else{
+				/**
+				 *当 j 不匹配时，回溯到 j 位置对应的 next[j] 的值，
+				 *若仍不相等，继续回溯至 0 。即有上面的判断：j==0 -->使 next[i]=1.
+				 */
+				j = next[j];
+			}
+		}
+	}
+	
+	public int Index_KMP(char[] S,char[] T, int pos){
+		int i = pos;
+		int j = 1;
+		int[] next = new int[255];
+		get_next(T, next);
+		while( i< S.length &&  j<T.length){
+			if(j==0 || S[i]== T[j]){
+				i++;
+				j++;				
+			}
+			else{	/* 指针后退，重新开始匹配*/
+				j = next[j];	/* j 退回合适的位置， i 值不变*/ 
+			}
+		}
+		
+		if(j>=T.length)
+			return i- T.length;
+		else
+			return 0;
+	}
+}
