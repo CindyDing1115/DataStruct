@@ -1,0 +1,131 @@
+public class MyLinkedList<E>{
+	private int size = 0;
+	private int cursor = 0;
+	private Node<E> header = null;
+
+	
+	public static void main(String[] args) {
+		MyLinkedList<Integer> m = new MyLinkedList<Integer>();
+//		Node<Integer> node = new Node<Integer>();
+		
+		for(int i=0;i<10;i++){
+			m.add(i);
+		}
+		m.showNext();
+	}
+
+
+	public MyLinkedList(){
+		this.header= new Node<E>();
+	}
+	
+	public void showNext(){
+		Node<E> node = new Node<E>();
+		node = header;
+		while(hasNext()){
+			cursor++;
+			System.out.print(node.data+"  ");
+			node = node.next;
+		}
+	}
+	public boolean add(E e){
+		if (size == 0) {  
+            header.data = e;  
+        } 
+		else {  
+            // 根据需要添加的内容，封装为结点  
+            Node<E> newNode = new Node<E>(e);  
+            // 得到当前最后一个结点  
+            Node<E> last = getNode(size-1);  
+            // 在最后一个结点后加上新结点  
+            last.addNode(newNode);  
+        }  
+        size++;// 当前大小自增加1  
+        return true;  
+		
+	}
+	
+	public boolean InsertNode(E e,int index){
+		if(index<0 || index>size){
+        	throw new RuntimeException("索引值有错:"+index);
+        }
+		Node<E> newNode = new Node<E>(e);
+		Node<E> aNode = getNode(index);
+		newNode.next = aNode.next;
+		aNode.next = newNode;
+		size++;
+		return true;
+	}
+	
+	public Node<E> getNode(int index){
+		// 先判断索引正确性  
+        if(index<0 || index>size){
+        	throw new RuntimeException("索引值有错:"+index);
+        }
+        Node<E> temp = new Node<E>();
+        temp = header;
+        int count = 0;
+        while(count<index){
+        	temp = temp.next;
+        	count++;
+        }
+        return temp;       
+        
+	}
+	
+	public E get(int index) { 
+		
+        // 先判断索引正确性  
+        if (index >= size || index < 0) {  
+            throw new RuntimeException("索引值有错：" + index);  
+        }  
+        Node<E> tem = new Node<E>();  
+        tem = header;  
+        int count = 0;  
+        while (count != index) {  
+            tem = tem.next;  
+            count++;  
+        }  
+        E e = tem.data;  
+        return e;  
+    }
+	
+	boolean hasNext(){		
+		if(cursor != size){return true;}
+		else
+			return false;
+	}
+
+	public int size() {  
+        return size;  
+    } 
+	
+	public boolean set(int index, E e) {  
+        // 先判断索引正确性  
+        if (index > size || index < 0) {  
+            throw new RuntimeException("索引值有错：" + index);  
+        }  
+        Node<E> newNode = new Node<E>(e);  
+        // 得到第x个结点  
+        Node<E> cNode = getNode(index);  
+        cNode.data = e;  
+        return true;  
+    }  
+}
+
+class Node<E>{
+	
+//	Node<E>  prior;
+	Node<E> next;
+	E data;
+	
+	Node(){}
+	Node(E e){
+		this.data = e;
+	}
+	void addNode(Node<E> node){
+		next = node;
+	}
+	
+	
+}
