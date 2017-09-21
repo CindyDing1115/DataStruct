@@ -1,0 +1,32 @@
+
+/**
+ * 自己用数组实现的栈
+ */
+public class ArrayStack<E> {
+	private int size = 0;
+	
+	private ArrayList1<E> list = new ArrayList1<E>();// 用来保存数据线性表<br> private
+														// int size;//表示当前栈元素个数
+
+	/**
+	 * 入栈操作
+	 * 
+	 * @param e
+	 */
+	public void push(E e) {
+		list.add(e);
+		size++;
+	}
+
+	/**
+	 * 出栈操作
+	 * 
+	 * @return
+	 */
+	public E pop() {
+		E e = list.get(size - 1);
+		size--;
+		return e;
+	}
+
+}
