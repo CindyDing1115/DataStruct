@@ -1,13 +1,19 @@
 package ding.exercise;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-
-public class DeleteAndCopy {
-	
+/**
+ * 删掉所有的a ，并把 b 复制一个
+ * 思路：
+ * 记录所有不是 a 的元素的个数并赋给原数组（== 删掉a），对b计数
+ * 两者相加即是新链表长度
+ * 扩容
+ * 从最后一项开始插入元素，遇 b c_new[i--] = 'b'
+ * 
+ */
+public class DeleteAndCopy {	
 
 	public static void Method(){
 		String s = "abaaabjkjdbajkdbuuebdbbabkaj";
