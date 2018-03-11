@@ -32,7 +32,7 @@ def HeapSort(lists):
     :return:
     """
     length = len(lists)
-    #for i in range(0,(length-2)//2+1)[::-1]:
+    #for i in range(0,(length-2)//2+1)[::-1]: #length-1 才是对应的元素索引，对其双亲结点要 (index-1）/2 故：length-2 // 2 而range不含最后一项 再+1
     for i in range(0, length // 2)[::-1]:
         AdjustHeap(lists, i, length-1)
 
