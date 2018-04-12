@@ -16,8 +16,9 @@ def insert_sort(lists):
         while j >= 0:
             if lists[j] > key:
                 lists[j + 1] = lists[j]
-                lists[j] = key
-            j -= 1
+                j -= 1
+        lists[j+1] = key
+        
     return lists
 
 
