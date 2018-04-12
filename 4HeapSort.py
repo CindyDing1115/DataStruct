@@ -16,7 +16,7 @@ def AdjustHeap(lists,i,idx):
     j = 2 * i + 1
     while j <= idx:
         #python & 是位运算，and才是逻辑运算符
-        if lists[j] < lists[j + 1] and j+1 <= idx: # j+1 < size 比如进行到最后两项，size下没有右结点，则必然小于已排好序的 like 30
+        if lists[j] < lists[j + 1] and j+1 <= idx: # 挑出最大子节点
             j += 1
         if temp > lists[j]:
             break
