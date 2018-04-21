@@ -21,7 +21,7 @@ def quick_sort(lists, left, right):
             left += 1
         lists[right] = lists[left] # 在这里覆盖正好还原了原始right位置应有的值
         
-    lists[right] = key # 这里left == right 了
+    lists[left] = key # 这里left == right 了
     quick_sort(lists,low,left-1)
     quick_sort(lists,left+1,high) # 这里的left已经找到了对应位置。
     
